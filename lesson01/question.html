@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>JS1 - Lesson 1 - Question</title>
+</head>
+
+<body class="bodyQuestion">
+  <main>
+    <h1>Var и глобальная область видимости</h1>
+    <a href="index.html" class="back">&lt-- назад</a>
+    <p>
+      Сергей, хотел бы уточнить момент по поводу объявления переменных через var.
+      Вы сказали на занятии, что переменные, объявленные с помощью var не являются глобальными.
+      Не понял почему это так. Ранее при изучении всегда считал, что переменная, объявленная
+      с помощью var будет глобальной (если только ее объявляют не в теле функции).
+      Да и изучение различных материалов в интернете также говорит о том, что эти переменные
+      становятся глобальными, в отличие от переменных, объявленных при помощи let.
+      Посидел в консоли, чтобы разобраться и опять же пришел к выводу, что переменные,
+      объявленные с помощью var находятся в глобальной области видимости.
+    </p>
+    <pre>
+      //создаем 2 переменные
+      var <span class="red">age</span> = 30;
+      let <span class="blue">age2</span> = 20;
+    </pre>
+    <pre>
+      // В отладчике в хроме, в поле Scope я вижу переменную <span class="blue">age2</span> (созданную через let) 
+      // в области видимости <b>Script</b> - <i>(скриншот 1)</i>
+
+      // А переменную <span class="red">age</span> в глобальной области видимости <b>Global</b> - <i>(скриншот 2)</i>
+    </pre>
+    <pre>
+      // Вывожу в консоль переменную <span class="red">age</span>, обращаясь к ней через window - <i>(скриншот 3)</i>
+      console.log(window.age) // возвращает 30 (то есть она есть в объекте window)
+
+      // Вывожу в консоль переменную <span class="blue">age2</span>, обращаясь к ней через window - <i>(скриншот 4)</i>
+      console.log(window.age2) // возвращает undefined (то есть ее нет в объекте window)
+    </pre>
+    <p>
+      Так все же, в итоге переменные, объявленные с помощью var - глобальные? Если нет, то почему?
+    </p>
+    <p style="font-size: 12px; text-align: right;">Скриншоты скейлятся при наведении</p>
+    <a href="img/Screen1.png" target="screen"><img src="img/Screen1.png" alt="Скриншот 1"></a>
+    <a href="img/Screen2.png" target="screen"><img src="img/Screen2.png" alt="Скриншот 2"></a>
+    <a href="img/Screen3.png" target="screen"><img src="img/Screen3.png" alt="Скриншот 3"></a>
+    <a href="img/Screen4.png" target="screen"><img src="img/Screen4.png" alt="Скриншот 4"></a>
+  </main>
+</body>
+
+</html>
