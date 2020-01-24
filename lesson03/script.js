@@ -142,33 +142,6 @@ function task03() {
   countBasketPrice(basket);
 }
 
-/*
-///////////////////////////////Задача 3. Вариант попроще////////////////////////////////
-let basket = [];
-let item;
-do {
-  item = +prompt('Введите стоимость товара', '');
-  console.log(item);
-  if (item !== 0 && !isNaN(item)) {
-    basket.push(item);
-  }
-}
-while (item !== 0);
-
-console.log(basket);
-
-function countBasketPrice(arr) {
-  let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
-  }
-  return sum;
-}
-
-console.log(`Сумма товаров в корзине: ${countBasketPrice(basket)}`);
-}
-*/
-
 
 function task04() {
   for (let i = 0; i < 10; console.log(i++)) {
