@@ -137,11 +137,8 @@ function task04() {
 
 
 function task05() {
-  let i = 0;
-  let row = '*';
-  while (i < 20) {
-    console.log(row);
-    row += '*';
-    i++;
+  let row = '';
+  while (row.length < 20) {
+    console.log(row += '*');
   }
 }
