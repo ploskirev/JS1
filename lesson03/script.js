@@ -1,9 +1,9 @@
 'use strict';
 
-/*
 ////////////////Задача 1: Вариант 1. Простой. Кода поменьше, алгоритм работает дольше////////////////
 
-function task01() {
+function task01a() {
+  console.log('Вариант 1. В лоб');
   let i = 1;
   let arr = [];
   while (i < 100) {
@@ -12,7 +12,7 @@ function task01() {
     while (j <= i) {
       let res = i % j;
       if (res == 0) {
-        count++
+        count++;
       }
       j++;
     }
@@ -23,12 +23,12 @@ function task01() {
   }
   console.log(`Простые числа: ${arr}`);
 }
-*/
 
-/*
+
 /////////////Задача 1: Вариант 2. Оптимизированный. Кода побольше, но работать будет быстрее///////////////
 
-function task01() {
+function task01b() {
+  console.log('Вариант 2. Оптимизированный. Кода побольше, но работать будет быстрее');
   let i = 1;
   let arr = [];
   let isComplicatedNum = false;
@@ -43,12 +43,12 @@ function task01() {
 
     // проверяем оставшиеся числа (от 3)
     let j = 2;
-    while (j < (Math.sqrt(i) + 1)) {  // так как достаточно найти только меньший делитель, то ищем до корня из искомого + 1
+    while (j < (Math.sqrt(i) + 1)) { // так как достаточно найти только меньший делитель, то ищем до корня из искомого + 1
       if (i % j == 0) { //если число простое, то сюда не зайдем
         isComplicatedNum = true; // если число сложное, здесь меняем значение флага и прерываем внутренний цикл
         break;
       }
-      j++; 
+      j++;
     }
     if (!isComplicatedNum) { // если значение флага false, записываем в массив найденное простое число
       arr.push(i);
@@ -58,12 +58,12 @@ function task01() {
   }
   console.log(`Простые числа: ${arr}`);
 }
-*/
 
 
-////////////////////////Задача 1: Вариант3. Решето Эратосфена//////////////////////////
+////////////////////////Задача 1: Вариант 3. Решето Эратосфена//////////////////////////
 
-function task01() {
+function task01c() {
+  console.log('Вариант 3. Решето Эратосфена');
   // генраируем массив от 1 до 100
   let arr = [];
   for (let i = 1; i < 101; i++) {
@@ -87,59 +87,45 @@ function task01() {
 }
 
 
-///////////////////////Задача 2 в задании отсутствовала ///////////////////////////
+///////////////////////Задача 3 (на объектах с методом в прототипе)///////////////////////////
 
 function task03() {
-  let basket = createBasket();
+  console.log(`Было интересно все же сделать залание с корзиной. 
+  Но забежал немного вперед и сделал на объектах и с методом в прототипе`);
 
-  /**
-   *@description Функция создает многомерный массив. В каждом подмассиве хранится информация о продукте.
-   *Название товара, цена товара за штуку. Количество штук.
-   *Массив заполняется пользователем с помощью prompt. 
-   * @returns многомерный массив [[товар, цена, количество], [товар, цена, количество]]
-   */
-  function createBasket() {
-    let basket = [];
-    let item;
-    let itemPrice;
-    let itemQuantity;
+  function Basket() {}; // создаю через конструктор, чтобы объявить метод не в самом объекте, 
+  // а в прототипе, чтобы в дальнейшем он не перебирался в for in
 
-    let count = 0;
-    while (true) {
-      item = prompt('Введите название товара. Или нажмите отмена, если Вы все ввели', '');
-      if (item === null) {
-        break;
-      }
-      itemPrice = +prompt('Введите его цену', '');
-      itemQuantity = +prompt('Введите количество штук этого товара', '');
-
-
-      basket[count] = [];
-      basket[count][0] = item;
-      basket[count][1] = itemPrice;
-      basket[count][2] = itemQuantity;
-      count++;
-    }
-    return basket;
-  }
-
-  /**
-   *@description Функция считает стоимость корзины, созданной функцией createBasket, учитывая цену и количество товара
-   * 
-   * @param {Array} arr многомерный массив, созданный в createBasket [товар, цена, количество] 
-   * @returns {number} стоимость представленной корзины
-   */
-  function countBasketPrice(arr) {
+  Basket.prototype.countBasketPrice = function() {
     let basketCost = 0;
-    arr.forEach(function(elem) {
-      let elemCost = elem[1] * elem[2];
-      basketCost += elemCost;
-    });
-    console.log(`Стоимость корзины равна ${basketCost}`);
-    return basketCost;
-  }
+    for (let elem in basket) {
+      if (this.hasOwnProperty(elem)) {
+        let elemCost = this[elem].price * this[elem].quantity;
+        basketCost += elemCost;
+      }
+    }
+    console.log(`Полная стоимость Вашей корзины = ${basketCost}`);
+  };
 
-  countBasketPrice(basket);
+  let basket = new Basket();
+
+  while (true) {
+    let item = prompt('Введите название товара. Или нажмите отмена, если Вы все ввели', '');
+    if (item === null) {
+      break;
+    }
+    let itemPrice = +prompt('Введите его цену', '');
+    let itemQuantity = +prompt('Введите количество штук этого товара', '');
+    basket[item] = {};
+    basket[item].price = itemPrice;
+    basket[item].quantity = itemQuantity;
+  }
+  console.log(`Ваша корзина:`);
+  console.dir(basket);
+
+  basket.countBasketPrice();
+
+  return basket;
 }
 
 
@@ -149,11 +135,12 @@ function task04() {
   }
 }
 
+
 function task05() {
   let i = 0;
   let row = '*';
   while (i < 20) {
-    console.log(row)
+    console.log(row);
     row += '*';
     i++;
   }
