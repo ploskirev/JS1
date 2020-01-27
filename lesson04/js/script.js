@@ -1,33 +1,27 @@
 'use strict';
 
 
-function task01a() {
-  // Первый вариант, который мне пришел в голову до просмотра spread syntax.
-  // Как я понял, смысл получился такой же, что и с использованием spread syntax.
-  // Конвертируем строку с помощью Array.from() в массив и присваиваем посимвольно в объект.
-  // Можно было делить введенное число на 100, округлять, работать с остатком от деления
-  // и получать разряды таким образом, но мне кажется это было бы сложнее
+function task01() {
 
-  console.log(`Первый вариант, который мне пришел в голову до просмотра spread syntax.
-  Как я понял, смысл получился такой же, что и с использованием spread syntax.
-  Конвертируем строку с помощью Array.from() в массив и присваиваем посимвольно в объект.
-  Можно было делить введенное число на 100, округлять, работать с остатком от деления
-  и получать разряды таким образом, но мне кажется это было бы сложнее`);
-
-  let inputNumber = prompt('Введите число от 0 до 999', '');
-  start(inputNumber);
+  class Converter {
+    constructor(hundreds, dozens, units) {
+      this['сотни'] = hundreds;
+      this['десятки'] = dozens;
+      this['единицы'] = units;
+    }
+  }
 
   /**
    *@description функция проверяет корректность ввода пользователя
    *
-   * @param {string} num число, полученное от пользователя. Должн быть от 0 до 999
-   * @returns {boolean} true - если ввод некорректный. False - если ввод корректный
+   * @param {string} num число в виде строки, полученное от пользователя. Должно быть от 0 до 999
+   * @returns {boolean} true - если ввод корректный. False - если ввод некорректный
    */
-  function isIncorrectNum(num) {
-    if (+num < 0 || +num > 999 || isNaN(+num) || num == '' || num == null) {
-      console.log('Введенное число некорректно');
+  function isСorrectNum(num) {
+    if (+num > 0 && +num < 999 && !isNaN(+num) && num != '' && num != null && num.length < 4) {
       return true;
     } else {
+      console.log('Введенное число некорректно');
       return false;
     }
   }
@@ -35,84 +29,31 @@ function task01a() {
   /**
    *@description функция конвертирует число в объект по разрядам сотни = , десятки = , единицы =
    *
-   * @param {string} num число от 0 до 999, полученная из ввода пользователя
-   * @returns {object} возвраащет объект с полученными разрядами
+   * @param {string} num число в виде строки, полученное от пользователя. Должн быть от 0 до 999
+   * @returns {object} возвращает объект с полученными разрядами
    */
-  function convertNumToObj(num) {
-    let outputObject = {};
-    outputObject['введенное число'] = num;
-    num = Array.from(num);
-    outputObject['единицы'] = num[num.length - 1];
-    num.length > 1 && (outputObject['десятки'] = num[num.length - 2]);
-    num.length > 2 && (outputObject['сотни'] = num[num.length - 3]);
-    console.log(outputObject);
-    return outputObject;
+  function convertNum(num) {
+    (num.length == 2) && (num = '0' + num);
+    (num.length == 1) && (num = '00' + num);
+    let obj = new Converter(...num);
+    console.log(obj);
+    return obj;
   }
 
   /**
-   *@description функция запускает конвертацию числа в объект
+   *@description запускает процесс проверки введенного числа и конвертации в объект
    *
-   * @param {string} num - строковое число от 0 до 999
-   * @returns Возвращает объект, получившийся в результате конвертации или пустой объект, если введенное число некорректно.
+   * @param {string} num - число в виде строки, полученное от пользователя. Должн быть от 0 до 999
+   * @returns {object} - возвращает конвертированный объект или пустой объект, если введенное число некорректно
    */
-  function start(num) {
-    return (isIncorrectNum(num) ? {} : convertNumToObj(num));
+  function startConvertation(num) {
+    return isСorrectNum(num) ? convertNum(num) : {};
   }
-}
-
-
-function task01b() {
-  // Второй вариант, после просмотра spread syntax.
-
-  console.log(`Второй вариант, после просмотра spread syntax.`);
 
   let inputNumber = prompt('Введите число от 0 до 999', '');
-  start(inputNumber);
-
-  /**
-   *@description функция проверяет корректность ввода пользователя
-   *
-   * @param {string} num число, полученное от пользователя. Должн быть от 0 до 999
-   * @returns {boolean} true - если ввод некорректный. False - если ввод корректный
-   */
-  function isIncorrectNum(num) {
-    if (+num < 0 || +num > 999 || isNaN(+num) || num == '' || num == null) {
-      console.log('Введенное число некорректно');
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   *@description функция конвертирует число в объект по разрядам сотни = , десятки = , единицы =
-   *
-   * @param {string} num число от 0 до 999, полученная из ввода пользователя
-   * @returns {object} возвраащет объект с полученными разрядами
-   */
-  function convertNumToObj(num) {
-    let outputObject = {};
-    outputObject['введенное число'] = num;
-    num = [...num]; // разница только в этой строке
-    outputObject['единицы'] = num[num.length - 1];
-    num.length > 1 && (outputObject['десятки'] = num[num.length - 2]);
-    num.length > 2 && (outputObject['сотни'] = num[num.length - 3]);
-    console.log(outputObject);
-    return outputObject;
-  }
-
-
-
-  /**
-   *@description функция запускает конвертацию числа в объект
-   *
-   * @param {string} num - строковое число от 0 до 999
-   * @returns Возвращает объект, получившийся в результате конвертации или пустой объект, если введенное число некорректно.
-   */
-  function start(num) {
-    return (isIncorrectNum(num) ? {} : convertNumToObj(num));
-  }
+  startConvertation(inputNumber);
 }
+
 
 
 function task02() {
