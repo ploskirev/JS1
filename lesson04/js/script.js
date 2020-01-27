@@ -178,7 +178,7 @@ function task02() {
 function startGame() {
   getRules();
   let secretNum = getNumber();
-  console.log(secretNum);
+  console.log(secretNum);  // Показываю загаданное число для проверки игры
   let counter = 0;
   while (true) {
     counter++;
