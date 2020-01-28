@@ -36,7 +36,6 @@ function createMap() {
  */
 function addRowsCaptions(map) {
   let rows = map.querySelectorAll('tr');
-  console.log(rows);
   let rowCaptionText = 8;
   rows.forEach(function(row) {
     let rowCaptionLeft = document.createElement('th');
@@ -89,3 +88,10 @@ function drawChessField() {
   addRowsCaptions(map);
   addColCaptions(map);
 }
+
+let startBtn = document.querySelector('button');
+startBtn.addEventListener('click', function() {
+  startBtn.style.display = "none";
+  drawChessField();
+})
+
