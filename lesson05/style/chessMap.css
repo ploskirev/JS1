@@ -1,0 +1,30 @@
+table {
+  margin: 50px auto;
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+}
+
+tr:nth-of-type(even) td:nth-of-type(even) {
+  background-color: #555;
+}
+
+tr:nth-of-type(odd) td:nth-of-type(odd) {
+  background-color: #555;
+}
+
+tr:nth-of-type(1) th {
+  transform: rotate(180deg);
+}
+
+tr:nth-of-type(n+1):nth-of-type(-n+9) th:last-of-type {
+  transform: rotate(180deg);
+}
+
+th {
+  padding: 10px;
+}
