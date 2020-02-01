@@ -5,16 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style/style.css">
-  <link rel="stylesheet" href="style/chessMap.css">
-  <title>JS1 - Lesson 2 - Homework</title>
+  <title>JS1 - Lesson 5 - Homework</title>
 </head>
 
 <body>
-  <button>Отрисовать шахматное поле</button>
- 
+  <header>
+    <div class="logoWrapper">E-SHOP</div>
+    <div class="basketAndSearchWrapper">
+      <form class="searchBarForm" action="#" method="GET">
+        <input type="text" class="searchField" id="searchField" name="search">
+        <input type="submit" class="searchSubmit" id="searchSubmit" value="">
+      </form>
+      <div class="basketWrapper">
+        <button id="basketBtn" class="basketBtn">Корзина</button>
+        <div id="basket" class="basket hidden">
+        </div>
+      </div>
+    </div>
+
+
+  </header>
+  <main id="catalog">
+  </main>
+
   <script defer src="js/script.js">
   </script>
-  <script src="js/chessMap.js"></script>
 </body>
 
 </html>
