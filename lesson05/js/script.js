@@ -80,6 +80,12 @@ let catalog = {
 
 let basket = {
   items: [],
+  
+  /**
+   *@description  метод добавляет выбранный продукт в корзину (свойство basket.items) в виде объекта
+   *
+   * @param {number} n - индекс выбранного продукта в массиве catalog.items
+   */
   addProduct(n) {
     let chosenProduct = {};
     Object.assign(chosenProduct, catalog.items[n]);
@@ -99,30 +105,43 @@ let basket = {
       this.items[this.items.length - 1].cost = this.items[this.items.length - 1].price * this.items[this.items.length - 1].quantity;
     }
   },
-  removeProduct(n) {
-    this.items.splice(n, 1);
+
+  /**
+   *@description метод удаляет продукт из корзины (из свойства items)
+   *
+   * @param {number} i - индекс объекта удаляемого продукта в массиве basket.items
+   */
+  removeProduct(i) {
+    this.items.splice(i, 1);
   },
+
+  /**
+   *@description метод считает общую стоимость продуктов в корзине
+   */
   getTotalCost() {
     this.totalCost = 0;
     this.items.forEach((elem) => this.totalCost += elem.cost);
   },
+
+  /**
+   *@description метод считает общее количество продуктов в корзине
+   */
   getTotalAmount() {
     this.totalAmount = 0;
     this.items.forEach((elem) => this.totalAmount += elem.quantity);
   },
-  showBasket() {
 
+  /**
+   *@description метод отрисовывает корзину в интерфейсе
+   */
+  showBasket() {
+    this.clearBasket();
     if (this.items.length == 0) {
-      this.clearBasket();
-      this.message = `Ваша корзина пуста`;
-      this.showMessage(this.message);
+      this.showMessage(this.items.length);
       return;
     } else {
-      this.clearBasket();
-      this.message = `В корзине ${this.totalAmount} товаров на сумму ${this.totalCost} рублей`;
-      this.showMessage(this.message);
+      this.showMessage(this.items.length);
     }
-
     this.items.forEach((elem) => {
 
       //create
@@ -161,14 +180,24 @@ let basket = {
       basketProduct.appendChild(basketRemoveBtn);
     });
   },
+
+  /**
+   *@description метод очищает содержимое корзины в интерфейсе (используется при отрисовке корзины)
+   */
   clearBasket() {
     while (basketDiv.firstChild) {
       basketDiv.removeChild(basketDiv.firstChild);
     }
   },
-  showMessage(text) {
+
+  /**
+   *@description метод выводит в корзину сообщение о ее содержимом (используется в отрисовке корзины)
+   * @param {number} itemsNumber - длина массива basket.items (количество продуктов в корзине)
+   */
+  showMessage(itemsNumber) {
+    (itemsNumber == 0) ? (this.message = `Ваша корзина пуста`) : (this.message = `В корзине ${this.totalAmount} товаров на сумму ${this.totalCost} рублей`);
     let messageElement = document.createElement('div');
-    messageElement.textContent = text;
+    messageElement.textContent = this.message;
     basketDiv.appendChild(messageElement);
   }
 };
