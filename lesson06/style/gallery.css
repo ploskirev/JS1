@@ -1,25 +1,25 @@
-.gallery {
+.gl-gallery {
   margin: 50px auto;
 }
 
-.mainImg {
+.gl-mainImg {
   margin-bottom: 30px;
+  text-align: center;
 }
 
-.mainImg > img {
-  width: 1200px;
-  height: 800px;
+.gl-mainImg > img {
+  object-fit: cover;
+  object-position: center;
 }
 
-.bottomWrapper {
-  width: 1100px;
+.gl-bottomWrapper {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.thumbnailsWrapper {
+.gl-thumbnailsWrapper {
   margin: 0 auto;
   max-width: 1000px;
   display: flex;
@@ -27,52 +27,46 @@
   overflow-x: scroll;
 }
 
-.prev,
-.next {
+.gl-prevBtn,
+.gl-nextBtn {
   height: 30px;
   width: 30px;
   border-radius: 5px;
 }
 
-.prev {
+.gl-prevBtn {
   border-left: 5px solid #ccc;
   border-top: 5px solid #ccc;
   transform: rotate(-45deg);
 }
 
-.next {
+.gl-nextBtn {
   border-right: 5px solid #ccc;
   border-top: 5px solid #ccc;
   transform: rotate(45deg);
 }
 
-.prev:hover,
-.next:hover {
+.gl-prevBtn:hover,
+.gl-nextBtn:hover {
   border-color: gold;
   cursor: pointer;
 }
 
-.thumbnailWrapper {
-  width: 120px;
-  height: 80px;
+.gl-thumbnailImg {
   margin: 10px;
   border: 3px solid #ccc;
   overflow: hidden;
   flex-shrink: 0;
   transition: all .2s;
+  object-fit: cover;
+  object-position: center;
 }
 
-.thumbnailWrapper:hover {
+.gl-thumbnailImg:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.thumbnailWrapper img {
-  object-fit: cover;
-  width: 120px;
-  height: 80px;
-}
-
-.active {
+.gl-active {
   border-color: gold;
 }
