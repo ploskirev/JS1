@@ -1,0 +1,9 @@
+#canv {
+  width: 1000px;
+  height: 800px;
+  border: 1px solid black;
+}
+
+#app {
+  flex-wrap: nowrap;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style/style.css">
+  <link rel="stylesheet" href="style/canvas.css">
+  <title>JS1 - Lesson 7 - Homework</title>
+</head>
+
+<body>
+  <header>Canvas</header>
+  <main id="app">
+    <div class="canv">
+      <canvas id="canv" width="1000" height="800"></canvas>
+    </div>
+
+    <div class="tools">
+      <div class="coordinates">
+        <p id="x"> <b>x: </b> <span id="x-coord"></span> </p>
+        <p id="y"> <b>y: </b> <span id="y-coord"></span> </p>
+        <br>
+      </div>
+
+      <button name="tool-button" data-name="brush">Brush</button>
+      <button name="tool-button" data-name="notbrush">NotBrush</button>
+      <button name="tool-button" data-name="notbrush2">NotBrush2</button>
+
+      <select name="input-obj" data-name="size" id="input-obj">
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+      </select>
+
+      <input type="color" name="input-obj" data-name="color">
+
+    </div>
+  </main>
+
+  <script defer src="js/canvas.js"></script>
+</body>
+
+</html>
