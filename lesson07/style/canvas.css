@@ -2,8 +2,27 @@
   width: 1000px;
   height: 800px;
   border: 1px solid black;
+  border-radius: 5px;
 }
 
 #app {
   flex-wrap: nowrap;
+}
+
+button {
+  width: 50px;
+  height: 20px;
+  border: 1px solid gray;
+  outline: none;
+  border-radius: 5px;
+}
+
+input {
+  border: none;
+  outline: none;
+  vertical-align: middle;
+}
+
+.tools {
+  vertical-align: text-bottom;
 }
