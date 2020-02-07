@@ -10,37 +10,37 @@
 </head>
 
 <body>
-  <header>Canvas</header>
+  <header class="canvasHeader">Canvas</header>
   <main id="app">
     <div class="canv">
-      <canvas id="canv" width="1000" height="800"></canvas>
+      <canvas id="canv" width="1000" height="700"></canvas>
     </div>
 
     <div class="tools">
+      
+      <h1>Grafiter</h1>
+      <button name="tool-button" data-name="pencil" class="pencil"></button>
+      <button name="tool-button" data-name="brush" class="brush"></button>
+      <button name="tool-button" data-name="stroke" class="circles"></button>
+      <button name="tool-button" data-name="spray" class="spray"></button>
+      <input class="jscolor {onFineChange:'update(this)'}" value="000000" name="input-obj" data-name="color">
+      <label for="point-width"> Width </label>
+      <input type="range" id="point-width" name="input-obj" value="1" min="1" max="20" step="1">
+      <!-- <input type="color" name="input-obj" data-name="color"> -->
+      <div> <span id="hex-str"></span></div>
+      <a href="#" class="button" id="save-button" name="save-button" data-name="save" target="blanck" download="image.png"></a>
+      <button name="tool-button" data-name="clear" class="clear">Clear</button>
+
       <div class="coordinates">
         <p id="x"> <b>x: </b> <span id="x-coord"></span> </p>
         <p id="y"> <b>y: </b> <span id="y-coord"></span> </p>
         <br>
       </div>
-
-      <button name="tool-button" data-name="pencil">Pencil</button> <br>
-      <button name="tool-button" data-name="brush">Brush</button> <br>
-      <button name="tool-button" data-name="stroke">Stroke</button> <br>
-      <button name="tool-button" data-name="spray">Spray</button> <br>
-      <button name="save-button" data-name="save">Save</button> <br>
-
-      <select name="input-obj" data-name="size" id="input-obj">
-        <option value="5">5</option>
-        <option value="10">10</option>
-        <option value="15">15</option>
-        <option value="20">20</option>
-      </select>
-      <br>
-      <input type="color" name="input-obj" data-name="color">
-
     </div>
-  </main>
 
+
+  </main>
+  <script src="js/jscolor.js"></script>
   <script defer src="js/canvas.js"></script>
 </body>
 
