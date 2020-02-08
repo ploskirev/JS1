@@ -91,6 +91,8 @@ label {
 }
 
 .jscolor {
+  display: block;
+  margin: 0 auto;
   width: 80px;
   height: 30px;
   text-align: center;
