@@ -6,6 +6,13 @@ let ctx = canvas.getContext('2d');
 let xCoord = document.querySelector('#x-coord');
 let yCoord = document.querySelector('#y-coord');
 
+let wrapper = document.querySelector('#app');
+let wrapWidth = wrapper.clientWidth;
+let wrapHeight = wrapper.clientHeight;
+canvas.setAttribute('width', wrapWidth);
+canvas.setAttribute('height', wrapHeight);
+
+
 let editor = {
   container: '#app',
   width: canvas.getAttribute('width'),
@@ -17,6 +24,7 @@ let editor = {
   y: 0,
 
   init() {
+    this.clearCanvas();
     document.querySelector(this.container).addEventListener('input', this.inputHandler);
     document.querySelector(this.container).addEventListener('click', this.clickHandler);
     document.querySelector('.clear').addEventListener('click', this.clearCanvas);
@@ -36,6 +44,9 @@ let editor = {
     let saveBtn = document.querySelector('#save-button');
     if (evt.target.name === 'tool-button') {
       editor.currentTool = evt.target.dataset.name;
+      if (evt.target.dataset.name === 'fill') {
+        editor.fillBackground();
+      }
       let toolsBtns = document.querySelectorAll('button[name="tool-button"]');
       for (let i = 0; i < toolsBtns.length; i++) {
         toolsBtns[i].classList.remove('activeTool');
@@ -52,12 +63,6 @@ let editor = {
     if (evt.target.name === 'input-obj') {
       editor[`current-${evt.target.dataset.name}`] = evt.target.value;
       editor['current-size'] = evt.target.value;
-      // if (evt.target.dataset.name === 'color') {
-      //   ctx.fillStyle = editor['current-color'];
-      //   ctx.strokeStyle = editor['current-color'];
-      // } else {
-      //   ctx.fillStyle = ctx.fillStyle;
-      // }
     }
   },
   startDraw() {
@@ -101,27 +106,31 @@ let editor = {
     canvas.onmousemove = () => {
       let i = 0;
       while (i < 10) {
-        let delta = Math.floor(Math.random() * 30);
-        let delta2 = -Math.floor(Math.random() * 30);
-        ctx.fillRect(editor.x + delta, editor.y + delta, 1, 1);
-        ctx.fillRect(editor.x + delta2, editor.y + delta2, 1, 1);
+        let delta = Math.floor(Math.random() * this['current-size'] * 2);
+        let delta2 = -Math.floor(Math.random() * this['current-size'] * 2);
+        ctx.fillRect(editor.x + delta, editor.y + delta2, 1, 1);
+        ctx.fillRect(editor.x + delta, editor.y + delta2, 1, 1);
         i++;
       }
     };
   },
+  fillBackground() {
+    ctx.fillStyle = editor['current-color'];
+    ctx.fillRect(1, 0, editor.width, editor.height);
+  },
   clearCanvas() {
-    ctx.fillStyle = '#fff';
-    ctx.fillRect(2, 2, 996, 696);
-    ctx.fillStyle = '#000';
+    ctx.clearRect(0, 0, editor.width, editor.height);
   }
 };
 
-editor.init();
-editor.clearCanvas();
 
-
+/**
+ *@description функция для получения значений цвета из колорпикера
+ */
 function update(picker) {
   editor['current-color'] = picker.toHEXString();
   ctx.fillStyle = editor['current-color'];
   ctx.strokeStyle = editor['current-color'];
 }
+
+editor.init();
